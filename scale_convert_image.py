@@ -5,12 +5,12 @@
 import os, sys
 from PIL import Image
 
-path = '/home/student-02-1fd13a93c123/images/'
+for root, dirs, files in os.walk("."):
 # iterate through each file
-for file in os.listdir(path):
+  for file in files:
   image, f = os.path.splitext(file)
   new_path = '/opt/icons/' + image
   try:
-    Image.open(file).rotate(-90).resize((128,128)).save(new_path, 'JPEG")
+    Image.open(file).rotate(-90).resize((128,128)).convert("RGB").save(new_path, 'JPEG')
   except IOError:
     print('cannot convert', file)
